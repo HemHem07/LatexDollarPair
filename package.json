@@ -1,0 +1,39 @@
+{
+  "name": "latex-dollar-pair",
+  "displayName": "LaTeX Dollar Pair",
+  "description": "Pair or skip dollar signs in LaTeX editors.",
+  "version": "0.1.1",
+  "publisher": "zadeon",
+  "engines": { "vscode": "^1.74.0" },
+  "categories": ["Other"],
+  "main": "./extension.js",
+  "activationEvents": ["onCommand:latexDollarPair.deletePairLeft"],
+  "contributes": {
+    "commands": [
+      { "command": "latexDollarPair.insertOrSkip", "title": "LaTeX Dollar Pair: Insert or Skip Dollar" }
+    ],
+    "keybindings": [
+      {
+        "command": "latexDollarPair.insertOrSkip",
+        "key": "shift+4",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == latex && config.latexDollarPair.enabled"
+      },
+      {
+        "command": "latexDollarPair.deletePairLeft",
+        "key": "backspace",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == latex && config.latexDollarPair.enabled && config.editor.autoClosingDelete != never"
+      }
+    ],
+    "configuration": {
+      "title": "LaTeX Dollar Pair",
+      "properties": {
+        "latexDollarPair.enabled": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Enable the LaTeX dollar-pair keyboard shortcut."
+        }
+      }
+    }
+  }
+}
